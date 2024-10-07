@@ -51,4 +51,16 @@ st.write("### Sales Over Time for Selected Sub-Categories")
 st.line_chart(sales_by_month_filtered['Sales'])
 
 st.write("### (4) show three metrics (https://docs.streamlit.io/library/api-reference/data/st.metric) for the selected items in (2): total sales, total profit, and overall profit margin (%)")
+total_sales = df_filtered['Sales'].sum()
+total_profit = df_filtered['Profit'].sum()
+overall_profit_margin = (total_profit / total_sales) * 100
+
+# Calculate overall profit margin for all products
+overall_avg_profit_margin = (df['Profit'].sum() / df['Sales'].sum()) * 100
+
+# Show metrics
+st.metric("Total Sales", f"${total_sales:,.2f}")
+st.metric("Total Profit", f"${total_profit:,.2f}")
+st.metric("Overall Profit", f"${overall_profit_margin:,.2f}")
+
 st.write("### (5) use the delta option in the overall profit margin metric to show the difference between the overall average profit margin (all products across all categories)")
